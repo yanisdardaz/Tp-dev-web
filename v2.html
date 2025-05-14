@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - V2</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Animation CSS simple -->
+  <style>
+    /* Animation pour le menu */
+    .menu-item {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-item::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #3b82f6;
+      transition: width 0.3s ease;
+    }
+    
+    .menu-item:hover::after {
+      width: 100%;
+    }
+    
+    /* Animation pour les cartes */
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    /* Hero section gradient */
+    .hero-gradient {
+      background: linear-gradient(135deg, #4a6bff 0%, #6b8cff 100%);
+    }
+  </style>
+
+  <script>
+    // Fonction simple pour afficher la section choisie
+    function showSection(sectionId) {
+      // Cacher toutes les sections
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        section.style.display = 'none';
+      });
+      
+      // Afficher la section demandée
+      document.getElementById(sectionId).style.display = 'block';
+    }
+    
+    // Initialiser la page au chargement
+    function initPage() {
+      showSection('cv');
+    }
+  </script>
+</head>
+<body class="bg-blue-50" onload="initPage()">
+  <!-- Navbar améliorée -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold text-blue-600">Portfolio</a>
+        
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="#" class="menu-item" onclick="showSection('cv'); return false;">CV</a></li>
+          <li><a href="#" class="menu-item" onclick="showSection('calculatrice'); return false;">Calculatrice</a></li>
+          <li><a href="#" class="menu-item" onclick="showSection('contact'); return false;">Contact</a></li>
+        </ul>
+        
+        <div class="md:hidden">
+          <button class="text-gray-600">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenu principal -->
+  <div class="container mx-auto p-4">
+    <!-- Section CV -->
+    <section id="cv" class="content-section fade-in">
+      <!-- Hero Section -->
+      <div class="hero-gradient text-white rounded-xl p-8 mb-8 shadow-lg">
+        <h1 class="text-4xl font-bold">Étudiant en Cybersécurité</h1>
+        <p class="mt-2">EPITA X Polytechnique</p>
+        <div class="mt-4 flex space-x-3">
+          <a href="#" class="bg-white text-blue-600 px-4 py-2 rounded-lg shadow-md hover:bg-blue-50">
+            <i class="fab fa-linkedin mr-2"></i>LinkedIn
+          </a>
+          <a href="#" class="bg-white text-blue-600 px-4 py-2 rounded-lg shadow-md hover:bg-blue-50">
+            <i class="fab fa-github mr-2"></i>GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Cartes d'information -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Contact -->
+        <div class="card-hover bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-bold mb-4 flex items-center">
+            <i class="fas fa-address-card mr-2 text-blue-600"></i>Contact
+          </h2>
+          <p class="mb-2"><i class="fas fa-envelope mr-2"></i>email@example.fr</p>
+          <p><i class="fas fa-phone mr-2"></i>07 xx xx xx xx</p>
+        </div>
+
+        <!-- Compétences -->
+        <div class="card-hover bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-bold mb-4 flex items-center">
+            <i class="fas fa-laptop-code mr-2 text-blue-600"></i>Compétences
+          </h2>
+          <ul class="list-disc list-inside">
+            <li>Programmation en C</li>
+            <li>Réseaux & Sécurité</li>
+            <li>Git & GitLab</li>
+            <li>HTML, CSS & JavaScript</li>
+          </ul>
+        </div>
+
+        <!-- Formation -->
+        <div class="card-hover bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-bold mb-4 flex items-center">
+            <i class="fas fa-graduation-cap mr-2 text-blue-600"></i>Formation
+          </h2>
+          <ul class="list-disc list-inside">
+            <li><strong>EPITA</strong> (2024 - Présent)</li>
+            <li><strong>Baccalauréat Scientifique</strong> (2023)</li>
+            <li>Spécialités : Maths, Physique</li>
+          </ul>
+        </div>
+
+        <!-- Expérience -->
+        <div class="card-hover bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-2xl font-bold mb-4 flex items-center">
+            <i class="fas fa-briefcase mr-2 text-blue-600"></i>Expérience
+          </h2>
+          <ul class="list-disc list-inside">
+            <li>Stage en cybersécurité</li>
+            <li>Préparateur de commandes</li>
+            <li>Restauration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Calculatrice -->
+    <section id="calculatrice" class="content-section fade-in" style="display: none;">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold mb-6 text-center">Calculatrice</h2>
+        <div class="flex flex-col items-center">
+          <div class="flex space-x-2 mb-4">
+            <input type="number" id="num1" class="border rounded p-2" placeholder="Numéro 1">
+            <select id="operator" class="border rounded p-2">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">×</option>
+              <option value="/">÷</option>
+            </select>
+            <input type="number" id="num2" class="border rounded p-2" placeholder="Numéro 2">
+          </div>
+          <button onclick="calculate()" class="bg-blue-600 text-white px-4 py-2 rounded">Calculer</button>
+          <p id="result" class="mt-4 text-xl font-bold"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="content-section fade-in" style="display: none;">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold mb-6 text-center">Me Contacter</h2>
+        <form class="max-w-md mx-auto space-y-4">
+          <div>
+            <label class="block mb-1">Nom</label>
+            <input type="text" class="w-full p-2 border rounded" required>
+          </div>
+          <div>
+            <label class="block mb-1">Prénom</label>
+            <input type="text" class="w-full p-2 border rounded" required>
+          </div>
+          <div>
+            <label class="block mb-1">Email</label>
+            <input type="email" class="w-full p-2 border rounded" required>
+          </div>
+          <div>
+            <label class="block mb-1">Message</label>
+            <textarea class="w-full p-2 border rounded" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Script pour la calculatrice -->
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const operator = document.getElementById('operator').value;
+      let result = 0;
+      
+      if (isNaN(num1) || isNaN(num2)) {
+        alert("Veuillez entrer des nombres valides");
+        return;
+      }
+      
+      switch (operator) {
+        case '+':
+          result = num1 + num2;
+          break;
+        case '-':
+          result = num1 - num2;
+          break;
+        case '*':
+          result = num1 * num2;
+          break;
+        case '/':
+          if (num2 === 0) {
+            alert("Division par zéro impossible");
+            return;
+          }
+          result = num1 / num2;
+          break;
+      }
+      
+      document.getElementById('result').textContent = "Résultat : " + result;
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white mt-10 py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Mon Portfolio</p>
+      <div class="mt-4 flex justify-center space-x-4">
+        <a href="#" class="text-gray-300 hover:text-white">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

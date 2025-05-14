@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - V3</title>
+  <!-- Tailwind CSS & DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Animation CSS - Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  
+  <style>
+    /* Animation pour le menu */
+    .menu-item {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-item::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s ease;
+    }
+    
+    .menu-item:hover::after {
+      width: 100%;
+    }
+    
+    /* Animation pour les cartes */
+    .animated-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .animated-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Animation pour les boutons */
+    .btn-animated {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .btn-animated:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-animated:active {
+      transform: translateY(0);
+    }
+    
+    /* Animation pour le fond du héros */
+    .gradient-bg {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Animation pour les inputs */
+    .input-animated {
+      transition: all 0.3s ease;
+    }
+    
+    .input-animated:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Effet de pulsation */
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Animation de rotation */
+    .spin-slow {
+      animation: spin 8s linear infinite;
+    }
+    
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    /* Animation de fade in pour les sections */
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  <script>
+    // Fonction pour afficher la section choisie
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => {
+        if (tab.id === tabId) {
+          tab.classList.remove('hidden');
+          tab.classList.add('fade-in');
+        } else {
+          tab.classList.add('hidden');
+          tab.classList.remove('fade-in');
+        }
+      });
+    }
+
+    // Initialisation de la page
+    function initPage() {
+      showTab('cv');
+      animateElements();
+      
+      // Gestionnaire pour le thème
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('change', function() {
+          const theme = this.checked ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        });
+      }
+    }
+
+    // Animation des éléments au chargement
+    function animateElements() {
+      const elements = document.querySelectorAll('.animate-on-load');
+      elements.forEach((element, index) => {
+        setTimeout(() => {
+          element.classList.add('animate__animated', 'animate__fadeInUp');
+        }, index * 200);
+      });
+    }
+
+    // Fonction pour copier l'email
+    function copyEmail() {
+      const emailText = document.getElementById('email');
+      const range = document.createRange();
+      range.selectNode(emailText);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      
+      // Notification visuelle
+      const button = document.querySelector('.copy-btn');
+      const originalText = button.textContent;
+      button.textContent = 'Copié !';
+      button.classList.add('animate__animated', 'animate__pulse');
+      
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.classList.remove('animate__animated', 'animate__pulse');
+      }, 2000);
+    }
+
+    // Fonction de calculatrice
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const operator = document.getElementById('operator').value;
+      let result = 0;
+      
+      if (isNaN(num1) || isNaN(num2)) {
+        showNotification("Veuillez entrer des nombres valides", "error");
+        return;
+      }
+      
+      switch (operator) {
+        case '+':
+          result = num1 + num2;
+          break;
+        case '-':
+          result = num1 - num2;
+          break;
+        case '*':
+          result = num1 * num2;
+          break;
+        case '/':
+          if (num2 === 0) {
+            showNotification("Division par zéro impossible", "error");
+            return;
+          }
+          result = num1 / num2;
+          break;
+      }
+      
+      const resultElement = document.getElementById('result');
+      resultElement.textContent = "Résultat : " + result;
+      resultElement.classList.add('animate__animated', 'animate__fadeIn');
+      
+      setTimeout(() => {
+        resultElement.classList.remove('animate__animated', 'animate__fadeIn');
+      }, 1000);
+    }
+
+    // Fonction pour soumettre le formulaire de contact
+    function submitContactForm(event) {
+      event.preventDefault();
+      showNotification("Merci pour votre message !", "success");
+      document.getElementById('contactForm').reset();
+    }
+
+    // Fonction pour vérifier les réponses du quiz
+    function submitQuiz() {
+      const questions = [
+        {id: 1, correctAnswer: "b"},
+        {id: 2, correctAnswer: "a"},
+        {id: 3, correctAnswer: "b"},
+        {id: 4, correctAnswer: "b"},
+        {id: 5, correctAnswer: "a"}
+      ];
+      
+      let score = 0;
+      questions.forEach(question => {
+        const answer = document.querySelector(`input[name="q${question.id}"]:checked`);
+        if (answer && answer.value === question.correctAnswer) {
+          score++;
+        }
+      });
+      
+      // Animation du résultat
+      const quizResult = document.getElementById('quizResult');
+      quizResult.textContent = `Vous avez obtenu ${score} sur 5.`;
+      quizResult.classList.add('animate__animated', 'animate__bounceIn');
+      
+      // Confetti pour un bon score
+      if (score >= 4) {
+        showConfetti();
+      }
+    }
+    
+    // Fonction pour afficher une notification
+    function showNotification(message, type = "info") {
+      const notification = document.createElement('div');
+      notification.className = `fixed top-20 right-5 p-4 rounded-lg shadow-lg animate__animated animate__fadeInRight`;
+      
+      // Style selon le type
+      if (type === "success") {
+        notification.classList.add('bg-green-500', 'text-white');
+      } else if (type === "error") {
+        notification.classList.add('bg-red-500', 'text-white');
+      } else {
+        notification.classList.add('bg-blue-500', 'text-white');
+      }
+      
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.remove('animate__fadeInRight');
+        notification.classList.add('animate__fadeOutRight');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 500);
+      }, 3000);
+    }
+    
+    // Fonction pour afficher des confettis
+    function showConfetti() {
+      const confettiCount = 50;
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.top = '0';
+      container.style.left = '0';
+      container.style.width = '100%';
+      container.style.height = '100%';
+      container.style.pointerEvents = 'none';
+      container.style.zIndex = '9999';
+      document.body.appendChild(container);
+      
+      const colors = ['#f44336', '#e91e63', '#9c27b0', '#3f51b5', '#2196f3', '#00bcd4', '#4CAF50', '#FFEB3B', '#FF9800'];
+      
+      for (let i = 0; i < confettiCount; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          
+          confetti.style.position = 'absolute';
+          confetti.style.width = Math.random() * 10 + 5 + 'px';
+          confetti.style.height = Math.random() * 10 + 5 + 'px';
+          confetti.style.backgroundColor = color;
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.top = '-10px';
+          confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+          
+          container.appendChild(confetti);
+          
+          // Animation de chute
+          const duration = Math.random() * 3 + 2;
+          const xMove = Math.random() * 20 - 10;
+          
+          confetti.animate([
+            { transform: 'translate(0, 0) rotate(0deg)' },
+            { transform: `translate(${xMove}vw, 100vh) rotate(${Math.random() * 360}deg)` }
+          ], {
+            duration: duration * 1000,
+            easing: 'cubic-bezier(0, 0, 0.2, 1)'
+          });
+          
+          setTimeout(() => {
+            container.removeChild(confetti);
+          }, duration * 1000);
+        }, Math.random() * 500);
+      }
+      
+      setTimeout(() => {
+        document.body.removeChild(container);
+      }, 6000);
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-blue-100 min-h-screen" onload="initPage()">
+
+  <!-- Navbar avec animation -->
+  <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 animate__animated animate__fadeInDown">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <i class="fas fa-bars"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
