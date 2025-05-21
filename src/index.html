@@ -151,3 +151,30 @@
       animation: hackingEffect 0.5s linear infinite;
       font-family: monospace;
     }
+      </style>
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-blue-100 min-h-screen">
+  <!-- Navbar avec animation -->
+  <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 animate__animated animate__fadeInDown">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <i class="fas fa-bars"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a href="#" class="menu-item" onclick="showTab('cv'); return false;">CV</a></li>
+          <li><a href="#" class="menu-item" onclick="showTab('calculatrice'); return false;">Calculatrice</a></li>
+          <li><a href="#" class="menu-item" onclick="showTab('contact'); return false;">Me contacter</a></li>
+          <li><a href="#" class="menu-item" onclick="showTab('quiz'); return false;">Quiz</a></li>
+        </ul>
+      </div>
+      <a class="btn btn-ghost normal-case text-xl animate__animated animate__pulse animate__infinite">Portfolio</a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="#" class="menu-item" onclick="showTab('cv'); return false;">CV</a></li>
+        <li><a href="#" class="menu-item" onclick="showTab('calculatrice'); return false;">Calculatrice</a></li>
+        <li><a href="#" class="menu-item" onclick="showTab('contact'); return false;">Me contacter</a></li>
+        <li><a href="#" class="menu-item" onclick="showTab('quiz'); return false;">Quiz</a></li>
+      </ul>
+    </div>
