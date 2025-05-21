@@ -38,5 +38,14 @@ function animateElements() {
     }, index * 200);
   });
 }
+// Fonction pour copier l'email
+function copyEmail() {
+  const emailText = document.getElementById('email');
+  const range = document.createRange();
+  range.selectNode(emailText);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand('copy');
+
 
 
