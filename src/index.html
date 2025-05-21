@@ -57,7 +57,7 @@
     .btn-animated:active {
       transform: translateY(0);
     }
-    
+
     /* Animation pour le fond du héros */
     .gradient-bg {
       background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -69,4 +69,16 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+    /* Animation pour les options radio */
+    .radio-label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .radio-label:hover {
+      background-color: rgba(59, 130, 246, 0.1);
     }
