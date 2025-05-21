@@ -97,6 +97,34 @@ function submitContactForm(event) {
   showNotification("Merci pour votre message !", "success");
   document.getElementById('contactForm').reset();
 }
+// Fonction pour vérifier les réponses du quiz
+function submitQuiz() {
+  const questions = [
+    {id: 1, correctAnswer: "b"},
+    {id: 2, correctAnswer: "a"},
+    {id: 3, correctAnswer: "b"},
+    {id: 4, correctAnswer: "b"},
+    {id: 5, correctAnswer: "a"},
+    {id: 6, correctAnswer: "b"},
+    {id: 7, correctAnswer: "a"},
+    {id: 8, correctAnswer: "b"},
+    {id: 9, correctAnswer: "a"},
+    {id: 10, correctAnswer: "a"},
+  ];
+
+  let score = 0;
+  questions.forEach(question => {
+    const answer = document.querySelector(`input[name="q${question.id}"]:checked`);
+    if (answer && answer.value === question.correctAnswer) {
+      score++;
+    }
+  });
+
+  // Animation du résultat
+  const quizResult = document.getElementById('quizResult');
+  quizResult.textContent = `Vous avez obtenu ${score} sur 10.`;
+  quizResult.classList.add('animate__animated', 'animate__bounceIn');
+
 
 
 
