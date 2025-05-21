@@ -130,6 +130,11 @@ function submitQuiz() {
     showConfetti();
   }
 }
+// Fonction pour afficher une notification
+function showNotification(message, type = "info") {
+  const notification = document.createElement('div');
+  notification.className = `fixed top-20 right-5 p-4 rounded-lg shadow-lg animate__animated animate__fadeInRight`;
+
 
 
 
