@@ -58,6 +58,39 @@ function copyEmail() {
     button.classList.remove('animate__animated', 'animate__pulse');
   }, 2000);
 }
+// Fonction de calculatrice
+function calculate() {
+  const num1 = parseFloat(document.getElementById('num1').value);
+  const num2 = parseFloat(document.getElementById('num2').value);
+  const operator = document.getElementById('operator').value;
+  let result = 0;
+
+  if (isNaN(num1) || isNaN(num2)) {
+    showNotification("Veuillez entrer des nombres valides", "error");
+    return;
+  }
+
+  switch (operator) {
+    case '+': result = num1 + num2; break;
+    case '-': result = num1 - num2; break;
+    case '*': result = num1 * num2; break;
+    case '/':
+      if (num2 === 0) {
+        showNotification("Division par zéro impossible", "error");
+        return;
+      }
+      result = num1 / num2;
+      break;
+  }
+
+  const resultElement = document.getElementById('result');
+  resultElement.textContent = "Résultat : " + result;
+  resultElement.classList.add('animate__animated', 'animate__fadeIn');
+
+  setTimeout(() => {
+    resultElement.classList.remove('animate__animated', 'animate__fadeIn');
+  }, 1000);
+}
 
 
 
