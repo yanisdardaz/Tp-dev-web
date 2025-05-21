@@ -14,4 +14,18 @@ function showTab(tabId) {
     tabToShow.style.display = 'block';
   }
 }
+// Initialisation de la page
+function initPage() {
+  showTab('cv');
+  animateElements();
+
+  // Gestionnaire pour le thème
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('change', function() {
+      const theme = this.checked ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    });
+  }
+}
 
