@@ -138,3 +138,16 @@
       box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
       transform: scale(1.05);
     }
+        /* Animation pour la simulation de brute force */
+    @keyframes hackingEffect {
+      0% { color: #00ff00; }
+      25% { color: #ff0000; }
+      50% { color: #0000ff; }
+      75% { color: #ffff00; }
+      100% { color: #00ff00; }
+    }
+    
+    .hacking-animation {
+      animation: hackingEffect 0.5s linear infinite;
+      font-family: monospace;
+    }
