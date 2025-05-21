@@ -351,6 +351,20 @@
         <p id="result" class="mt-4 text-xl font-bold"></p>
       </div>
     </section>
+        <!-- Section Contact -->
+    <section id="contact" class="tab-content hidden">
+      <div class="text-center">
+        <h2 class="text-4xl mb-6 animate__animated animate__bounceIn">Me Contacter</h2>
+        <form id="contactForm" onsubmit="submitContactForm(event)" class="space-y-4 max-w-md mx-auto">
+          <input type="text" name="name" placeholder="Nom" class="input input-bordered w-full input-animated" required />
+          <input type="text" name="surname" placeholder="Prénom" class="input input-bordered w-full input-animated" required />
+          <input type="email" name="email" placeholder="Email" class="input input-bordered w-full input-animated" required />
+          <textarea name="message" placeholder="Message" class="textarea textarea-bordered w-full input-animated" required></textarea>
+          <button type="submit" class="btn btn-primary w-full btn-animated">Envoyer</button>
+        </form>
+      </div>
+    </section>
+
 
 
 
