@@ -91,6 +91,13 @@ function calculate() {
     resultElement.classList.remove('animate__animated', 'animate__fadeIn');
   }, 1000);
 }
+// Fonction pour soumettre le formulaire de contact
+function submitContactForm(event) {
+  event.preventDefault();
+  showNotification("Merci pour votre message !", "success");
+  document.getElementById('contactForm').reset();
+}
+
 
 
 
