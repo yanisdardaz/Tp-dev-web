@@ -6,3 +6,12 @@ function showTab(tabId) {
     tab.classList.remove('fade-in');
     tab.style.display = 'none';
   });
+    // On affiche la bonne
+  const tabToShow = document.getElementById(tabId);
+  if (tabToShow) {
+    tabToShow.classList.remove('hidden');
+    tabToShow.classList.add('fade-in');
+    tabToShow.style.display = 'block';
+  }
+}
+
