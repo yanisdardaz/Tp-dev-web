@@ -46,6 +46,18 @@ function copyEmail() {
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(range);
   document.execCommand('copy');
+  
+  // Notification visuelle
+  const button = document.querySelector('.copy-btn');
+  const originalText = button.textContent;
+  button.textContent = 'Copié !';
+  button.classList.add('animate__animated', 'animate__pulse');
+
+  setTimeout(() => {
+    button.textContent = originalText;
+    button.classList.remove('animate__animated', 'animate__pulse');
+  }, 2000);
+}
 
 
 
