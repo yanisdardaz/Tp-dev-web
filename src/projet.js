@@ -29,3 +29,14 @@ function initPage() {
   }
 }
 
+// Animation des éléments au chargement
+function animateElements() {
+  const elements = document.querySelectorAll('.animate-on-load');
+  elements.forEach((element, index) => {
+    setTimeout(() => {
+      element.classList.add('animate__animated', 'animate__fadeInUp');
+    }, index * 200);
+  });
+}
+
+
