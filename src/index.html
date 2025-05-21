@@ -364,6 +364,123 @@
         </form>
       </div>
     </section>
+    
+    <!-- Section Quiz -->
+    <section id="quiz" class="tab-content hidden">
+      <div class="text-center">
+        <h2 class="text-4xl mb-6 animate__animated animate__bounceIn">Quiz</h2>
+        <button class="btn btn-brute-force mb-6 animate__animated animate__pulse" onclick="bruteForceQuiz()">
+          <i class="fas fa-terminal mr-2"></i> BRUTE FORCE
+        </button>
+        <form id="quizForm" onsubmit="submitQuiz(); return false;" class="max-w-2xl mx-auto">
+          <div class="space-y-6">
+            <div>
+              <p>1. Quelle est la capitale de la France ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q1" value="a" /> Berlin
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q1" value="b" /> Paris
+              </label>
+            </div>
+            
+            <div>
+              <p>2. Quelle est la couleur du ciel ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q2" value="a" /> Bleu
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q2" value="b" /> Vert
+              </label>
+            </div>
+            
+            <div>
+              <p>3. Quel est le plus grand océan du monde ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q3" value="a" /> Océan Atlantique
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q3" value="b" /> Océan Pacifique
+              </label>
+            </div>
+            
+            <div>
+              <p>4. Combien de continents y a-t-il sur Terre ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q4" value="a" /> 5
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q4" value="b" /> 7
+              </label>
+            </div>
+            
+            <div>
+              <p>5. Quelle planète est connue comme la planète rouge ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q5" value="a" /> Mars
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q5" value="b" /> Jupiter
+              </label>
+            </div>
+            
+            <div>
+              <p>6. Qui a peint La Joconde ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q6" value="a" /> Vincent van Gogh
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q6" value="b" /> Leonardo da Vinci
+              </label>
+            </div>
+            
+            <div>
+              <p>7. Quelle est la plus haute montagne du monde ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q7" value="a" /> Le Mont Everest
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q7" value="b" /> Le Mont Blanc
+              </label>
+            </div>
+            
+            <div>
+              <p>8. Quel est le plus grand désert du monde ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q8" value="a" /> Le Sahara
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q8" value="b" /> L'Antarctique
+              </label>
+            </div>
+            
+            <div>
+              <p>9. Quel est le symbole chimique de l'or ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q9" value="a" /> Au
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q9" value="b" /> Ag
+              </label>
+            </div>
+            
+            <div>
+              <p>10. Quel pays a la plus grande population au monde ?</p>
+              <label class="radio-label">
+                <input type="radio" name="q10" value="a" /> Inde
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="q10" value="b" /> Chine
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-6">Soumettre le Quiz</button>
+          <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+        </form>
+      </div>
+    </section>
+  </div>
+
 
 
 
