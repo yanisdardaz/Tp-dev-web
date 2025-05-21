@@ -125,6 +125,12 @@ function submitQuiz() {
   quizResult.textContent = `Vous avez obtenu ${score} sur 10.`;
   quizResult.classList.add('animate__animated', 'animate__bounceIn');
 
+  // Confetti pour un bon score
+  if (score >= 7) {
+    showConfetti();
+  }
+}
+
 
 
 
