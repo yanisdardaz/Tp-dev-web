@@ -134,6 +134,48 @@ function submitQuiz() {
 function showNotification(message, type = "info") {
   const notification = document.createElement('div');
   notification.className = `fixed top-20 right-5 p-4 rounded-lg shadow-lg animate__animated animate__fadeInRight`;
+  
+  // Style selon le type
+  if (type === "success") {
+    notification.classList.add('bg-green-500', 'text-white');
+  } else if (type === "error") {
+    notification.classList.add('bg-red-500', 'text-white');
+  } else {
+    notification.classList.add('bg-blue-500', 'text-white');
+  }
+
+  notification.textContent = message;
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.classList.remove('animate__fadeInRight');
+    notification.classList.add('animate__fadeOutRight');
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 500);
+  }, 3000);
+}
+
+  // Style selon le type
+  if (type === "success") {
+    notification.classList.add('bg-green-500', 'text-white');
+  } else if (type === "error") {
+    notification.classList.add('bg-red-500', 'text-white');
+  } else {
+    notification.classList.add('bg-blue-500', 'text-white');
+  }
+
+  notification.textContent = message;
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.classList.remove('animate__fadeInRight');
+    notification.classList.add('animate__fadeOutRight');
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 500);
+  }, 3000);
+}
 
 
 
