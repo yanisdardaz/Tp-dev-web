@@ -176,6 +176,60 @@ function showNotification(message, type = "info") {
     }, 500);
   }, 3000);
 }
+// Fonction pour afficher des confettis
+function showConfetti() {
+  const confettiCount = 100;
+  const container = document.createElement('div');
+  container.style.position = 'fixed';
+  container.style.top = '0';
+  container.style.left = '0';
+  container.style.width = '100%';
+  container.style.height = '100%';
+  container.style.pointerEvents = 'none';
+  container.style.zIndex = '9999';
+  document.body.appendChild(container);
+
+  const colors = ['#f44336', '#e91e63', '#9c27b0', '#3f51b5', '#2196f3', '#00bcd4', '#4CAF50', '#FFEB3B', '#FF9800'];
+
+  for (let i = 0; i < confettiCount; i++) {
+    setTimeout(() => {
+      const confetti = document.createElement('div');
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      confetti.style.position = 'absolute';
+      confetti.style.width = Math.random() * 10 + 5 + 'px';
+      confetti.style.height = Math.random() * 10 + 5 + 'px';
+      confetti.style.backgroundColor = color;
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.top = '-10px';
+      confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+
+      container.appendChild(confetti);
+
+      // Animation de chute
+      const duration = Math.random() * 3 + 2;
+      const xMove = Math.random() * 20 - 10;
+
+      confetti.animate([
+        { transform: 'translate(0, 0) rotate(0deg)' },
+        { transform: `translate(${xMove}vw, 100vh) rotate(${Math.random() * 360}deg)` }
+      ], {
+        duration: duration * 1000,
+        easing: 'cubic-bezier(0, 0, 0.2, 1)'
+      });
+
+      setTimeout(() => {
+        container.removeChild(confetti);
+      }, duration * 1000);
+    }, Math.random() * 500);
+  }
+
+  setTimeout(() => {
+    document.body.removeChild(container);
+  }, 6000);
+}
+
+
 
 
 
