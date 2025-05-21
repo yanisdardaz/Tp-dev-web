@@ -12,7 +12,7 @@
   <!-- Animation CSS - Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   
-  <style>
+<style>
     /* Animation pour le menu */
     .menu-item {
       position: relative;
@@ -24,3 +24,12 @@
       position: absolute;
       width: 0;
       height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s ease;
+    }
+    
+    .menu-item:hover::after {
+      width: 100%;
+    }
