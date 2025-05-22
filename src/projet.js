@@ -247,6 +247,34 @@ function bruteForceQuiz() {
     line.textContent = text;
     terminalText.appendChild(line);
     terminalText.scrollTop = terminalText.scrollHeight;
+    
+    // Après un moment, arrêter l'animation
+    setTimeout(() => {
+      line.className = '';
+      line.style.color = '#00ff00';
+    }, 2000);
+  }
+
+  // Réponses correctes du quiz
+  const correctAnswers = {
+    q1: "b", q2: "a", q3: "b", q4: "b", q5: "a",
+    q6: "b", q7: "a", q8: "b", q9: "a", q10: "a"
+  };
+
+  // Simuler le brute force
+  addTerminalText("INITIALISATION DE L'ATTAQUE BRUTE FORCE...");
+
+  setTimeout(() => {
+    addTerminalText("ANALYSE DE LA STRUCTURE DU QUIZ...");
+  }, 800);
+
+  setTimeout(() => {
+    addTerminalText("DÉTECTION DE 10 QUESTIONS...");
+  }, 1600);
+
+  setTimeout(() => {
+    addTerminalText("DÉMARRAGE DE L'ATTAQUE...");
+  }, 2400);
 
 
 
