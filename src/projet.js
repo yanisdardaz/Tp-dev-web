@@ -6,7 +6,8 @@ function showTab(tabId) {
     tab.classList.remove('fade-in');
     tab.style.display = 'none';
   });
-    // On affiche la bonne
+
+  // On affiche la bonne
   const tabToShow = document.getElementById(tabId);
   if (tabToShow) {
     tabToShow.classList.remove('hidden');
@@ -14,6 +15,7 @@ function showTab(tabId) {
     tabToShow.style.display = 'block';
   }
 }
+
 // Initialisation de la page
 function initPage() {
   showTab('cv');
@@ -38,6 +40,7 @@ function animateElements() {
     }, index * 200);
   });
 }
+
 // Fonction pour copier l'email
 function copyEmail() {
   const emailText = document.getElementById('email');
@@ -46,7 +49,7 @@ function copyEmail() {
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(range);
   document.execCommand('copy');
-  
+
   // Notification visuelle
   const button = document.querySelector('.copy-btn');
   const originalText = button.textContent;
@@ -58,6 +61,7 @@ function copyEmail() {
     button.classList.remove('animate__animated', 'animate__pulse');
   }, 2000);
 }
+
 // Fonction de calculatrice
 function calculate() {
   const num1 = parseFloat(document.getElementById('num1').value);
@@ -91,12 +95,14 @@ function calculate() {
     resultElement.classList.remove('animate__animated', 'animate__fadeIn');
   }, 1000);
 }
+
 // Fonction pour soumettre le formulaire de contact
 function submitContactForm(event) {
   event.preventDefault();
   showNotification("Merci pour votre message !", "success");
   document.getElementById('contactForm').reset();
 }
+
 // Fonction pour vérifier les réponses du quiz
 function submitQuiz() {
   const questions = [
@@ -130,31 +136,11 @@ function submitQuiz() {
     showConfetti();
   }
 }
+
 // Fonction pour afficher une notification
 function showNotification(message, type = "info") {
   const notification = document.createElement('div');
   notification.className = `fixed top-20 right-5 p-4 rounded-lg shadow-lg animate__animated animate__fadeInRight`;
-  
-  // Style selon le type
-  if (type === "success") {
-    notification.classList.add('bg-green-500', 'text-white');
-  } else if (type === "error") {
-    notification.classList.add('bg-red-500', 'text-white');
-  } else {
-    notification.classList.add('bg-blue-500', 'text-white');
-  }
-
-  notification.textContent = message;
-  document.body.appendChild(notification);
-
-  setTimeout(() => {
-    notification.classList.remove('animate__fadeInRight');
-    notification.classList.add('animate__fadeOutRight');
-    setTimeout(() => {
-      document.body.removeChild(notification);
-    }, 500);
-  }, 3000);
-}
 
   // Style selon le type
   if (type === "success") {
@@ -176,6 +162,7 @@ function showNotification(message, type = "info") {
     }, 500);
   }, 3000);
 }
+
 // Fonction pour afficher des confettis
 function showConfetti() {
   const confettiCount = 100;
@@ -228,13 +215,14 @@ function showConfetti() {
     document.body.removeChild(container);
   }, 6000);
 }
+
 // Brute force quiz
 function bruteForceQuiz() {
   // Créer un élément de terminal
   const terminal = document.createElement('div');
   terminal.className = 'fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 p-4';
   document.body.appendChild(terminal);
-  
+
   // Ajouter un conteneur pour le texte
   const terminalText = document.createElement('div');
   terminalText.className = 'font-mono text-green-500 text-lg max-w-3xl w-full h-64 overflow-auto p-4 bg-black border-2 border-green-500 rounded';
@@ -247,7 +235,7 @@ function bruteForceQuiz() {
     line.textContent = text;
     terminalText.appendChild(line);
     terminalText.scrollTop = terminalText.scrollHeight;
-    
+
     // Après un moment, arrêter l'animation
     setTimeout(() => {
       line.className = '';
@@ -275,6 +263,7 @@ function bruteForceQuiz() {
   setTimeout(() => {
     addTerminalText("DÉMARRAGE DE L'ATTAQUE...");
   }, 2400);
+
   // Marquer progressivement les bonnes réponses
   let questionIndex = 1;
   const attackInterval = setInterval(() => {
@@ -316,17 +305,4 @@ function bruteForceQuiz() {
 
 // S'assurer que le DOM est chargé avant d'initialiser
 document.addEventListener('DOMContentLoaded', initPage);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
