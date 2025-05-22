@@ -275,6 +275,50 @@ function bruteForceQuiz() {
   setTimeout(() => {
     addTerminalText("DÉMARRAGE DE L'ATTAQUE...");
   }, 2400);
+  // Marquer progressivement les bonnes réponses
+  let questionIndex = 1;
+  const attackInterval = setInterval(() => {
+    if (questionIndex <= 10) {
+      const correctAnswer = correctAnswers[`q${questionIndex}`];
+      const radioBtn = document.querySelector(`input[name="q${questionIndex}"][value="${correctAnswer}"]`);
+
+      if (radioBtn) {
+        radioBtn.checked = true;
+        radioBtn.parentNode.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+        addTerminalText(`QUESTION ${questionIndex} CRACKÉE: RÉPONSE = ${correctAnswer}`);
+      }
+
+      questionIndex++;
+    } else {
+      clearInterval(attackInterval);
+
+      addTerminalText("TOUTES LES RÉPONSES ONT ÉTÉ TROUVÉES!");
+      addTerminalText("SCORE FORCÉ: 10/10");
+
+      setTimeout(() => {
+        addTerminalText("REDIRECTION VERS LA PAGE DE CONTACT...");
+      }, 1000);
+
+      // Afficher un bouton pour fermer le terminal et rediriger
+      const closeButton = document.createElement('button');
+      closeButton.className = 'btn btn-error mt-4 animate__animated animate__pulse animate__infinite';
+      closeButton.textContent = 'TERMINER HACK & REDIRIGER';
+      closeButton.onclick = function() {
+        document.body.removeChild(terminal);
+        showTab('contact');
+        showConfetti();
+        showNotification("Hack réussi! Toutes les réponses ont été trouvées.", "success");
+      };
+      terminal.appendChild(closeButton);
+    }
+  }, 600);
+}
+
+// S'assurer que le DOM est chargé avant d'initialiser
+document.addEventListener('DOMContentLoaded', initPage);
+
+
+
 
 
 
