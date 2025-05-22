@@ -234,6 +234,21 @@ function bruteForceQuiz() {
   const terminal = document.createElement('div');
   terminal.className = 'fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 p-4';
   document.body.appendChild(terminal);
+  
+  // Ajouter un conteneur pour le texte
+  const terminalText = document.createElement('div');
+  terminalText.className = 'font-mono text-green-500 text-lg max-w-3xl w-full h-64 overflow-auto p-4 bg-black border-2 border-green-500 rounded';
+  terminal.appendChild(terminalText);
+
+  // Fonction pour ajouter du texte au terminal
+  function addTerminalText(text) {
+    const line = document.createElement('div');
+    line.className = 'hacking-animation';
+    line.textContent = text;
+    terminalText.appendChild(line);
+    terminalText.scrollTop = terminalText.scrollHeight;
+
+
 
 
 
