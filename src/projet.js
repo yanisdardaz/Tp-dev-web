@@ -228,6 +228,13 @@ function showConfetti() {
     document.body.removeChild(container);
   }, 6000);
 }
+// Brute force quiz
+function bruteForceQuiz() {
+  // Créer un élément de terminal
+  const terminal = document.createElement('div');
+  terminal.className = 'fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 p-4';
+  document.body.appendChild(terminal);
+
 
 
 
