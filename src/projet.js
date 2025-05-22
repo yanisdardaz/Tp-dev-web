@@ -305,4 +305,27 @@ function bruteForceQuiz() {
 
 // S'assurer que le DOM est chargé avant d'initialiser
 document.addEventListener('DOMContentLoaded', initPage);
+// Génère des pétales de fleur de cerisier (sakura)
+const petalColors = [
+  "rgba(255,182,193,0.85)",
+  "rgba(255,192,203,0.85)",
+  "rgba(255,240,245,0.8)"
+];
+function createPetal() {
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  const size = Math.random() * 12 + 24;
+  petal.style.width = size + "px";
+  petal.style.height = size + "px";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = (Math.random() * 3 + 5) + "s";
+  petal.style.opacity = Math.random() * 0.5 + 0.5;
+  // Forme du pétale en SVG
+  petal.innerHTML = `<svg viewBox="0 0 36 36" fill="none"><path d="M18 3 C12 11, 3 16, 18 33 C33 16, 24 11, 18 3 Z" fill="${petalColors[Math.floor(Math.random()*petalColors.length)]}" /></svg>`;
+  document.body.appendChild(petal);
+  setTimeout(() => petal.remove(), 9000);
+}
+setInterval(createPetal, 400);
+// En créer quelques-uns au départ
+for (let i = 0; i < 10; i++) setTimeout(createPetal, i*300);
 
