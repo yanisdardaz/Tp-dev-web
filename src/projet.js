@@ -328,4 +328,83 @@ function createPetal() {
 setInterval(createPetal, 400);
 // En créer quelques-uns au départ
 for (let i = 0; i < 10; i++) setTimeout(createPetal, i*300);
+document.addEventListener('DOMContentLoaded', function() {
+  // Afficher/masquer la boîte de chat
+  document.getElementById('chatbot-header').onclick = function() {
+    const box = document.getElementById('chatbot-box');
+    box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
+    if (box.style.display === 'block') {
+      setTimeout(() => document.getElementById('chatbot-input').focus(), 100);
+    }
+  };
+
+  // Gérer l'envoi via bouton ou Entrée
+  document.getElementById('chatbot-send').onclick = sendMessage;
+  document.getElementById('chatbot-input').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  function appendMessage(text, from='user') {
+    const div = document.createElement('div');
+    div.className = 'chatbot-msg' + (from === 'user' ? ' user' : '');
+    div.innerHTML = `<span class="chatbot-bubble">${text}</span>`;
+    document.getElementById('chatbot-messages').appendChild(div);
+    document.getElementById('chatbot-messages').scrollTop = 9999;
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chatbot-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+    appendMessage(msg, 'user');
+    input.value = '';
+    input.focus();
+
+    // === Appel réel au backend IA ===
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({message: msg})
+    })
+    .then(res => res.json())
+    .then(data => appendMessage(data.reply || "Désolé, je n'ai pas compris.", 'bot'))
+    .catch(() => appendMessage("Erreur serveur, réessaie plus tard.", 'bot'));
+  }
+});
+// Installer d'abord les paquets suivants :
+// npm install express openai cors
+
+const express = require('express');
+const cors = require('cors');
+const { Configuration, OpenAIApi } = require('openai');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Remplace ceci par ta clé API OpenAI personnelle
+const openai = new OpenAIApi(new Configuration({
+  apiKey: 'TA_CLE_OPENAI_ICI'
+}));
+
+app.post('/api/chat', async (req, res) => {
+  const userMsg = req.body.message;
+  if (!userMsg) return res.json({ reply: "Aucune question reçue." });
+
+  try {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo", // ou "gpt-4" si tu y as accès
+      messages: [{role: "user", content: userMsg}],
+      max_tokens: 150
+    });
+    const reply = completion.data.choices[0].message.content.trim();
+    res.json({ reply });
+  } catch (err) {
+    res.json({ reply: "Erreur IA, essaie plus tard." });
+  }
+});
+
+app.listen(3000, () => console.log("API IA en écoute sur le port 3000"));
+
+
 
