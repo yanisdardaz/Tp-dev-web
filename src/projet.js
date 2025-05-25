@@ -328,7 +328,3 @@ function createPetal() {
 setInterval(createPetal, 400);
 // En créer quelques-uns au départ
 for (let i = 0; i < 10; i++) setTimeout(createPetal, i*300);
-
-
-
-
